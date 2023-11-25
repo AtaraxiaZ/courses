@@ -12,18 +12,16 @@ void main() {
   pipe(p1);
   pipe(p2);
   if (fork() == 0) {
-    write(p1[1], "c", 1);
+    write(p1[1], "2", 1);
     while (1) {
       if (read(p2[0], buf1, 1)) {
         write(p1[1], buf1, 1);
-        printf("%c", buf1[0]);
       }
     }
   } else {
     while (1) {
       if (read(p1[0], buf2, 1)) {
         write(p2[1], buf2, 1);
-        printf("%c", buf2[0]);
       }
     }
   }
